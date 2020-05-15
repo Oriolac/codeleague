@@ -1,51 +1,70 @@
 <span vocab="http://schema.org/" typeof="WPHeader">
 <header>
-    <nav class="navbar fixed-top navbar-light justify-content-between navbar-expand-lg px-4" style="background-image: linear-gradient(15deg, #87e0e4 0%, #f0d660 100%);" role="navigation">
-        <a class="navbar-brand pl-5" href="/">Codeleague</a>
+    <nav class="navbar fixed-top navbar-light justify-content-between navbar-expand-lg px-4"
+         style="background-image: linear-gradient(15deg, #87e0e4 0%, #f0d660 100%);" role="navigation">
+        <a class="navbar-brand pl-5" href="/" property="name" value="Codeleague">Codeleague</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'league:info' %}">Info </a>
+                    <li class="nav-item" rel="hasPart">
+                        <div typeof="SiteNavigationElement">
+                        <a class="nav-link" property="discussionUrl" href="{% url 'league:info' %}">Info </a>
+                        </div>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{% url 'account:user_detail' user.pk %}">View</a>
-                                <a class="dropdown-item" href="{% url 'account:edit' user.pk %}">Edit</a>
-                                <a class="dropdown-item" href="{% url 'account:participations' user.pk %}">Participations</a>
-                            </div>
+                                <div rel="hasPart"><div typeof="SiteNavigationElement">
+                                <a class="dropdown-item" property="discussionUrl"
+                                   href="{% url 'account:user_detail' user.pk %}">View</a>
+                                </div></div><div rel="hasPart"><div typeof="SiteNavigationElement">
+                                <a class="dropdown-item" property="discussionUrl"
+                                   href="{% url 'account:edit' user.pk %}">Edit</a>
+                                </div></div><div rel="hasPart"><div typeof="SiteNavigationElement">
+                                <a class="dropdown-item" property="discussionUrl"
+                                   href="{% url 'account:participations' user.pk %}">Participations</a>
+                                </div></div>
+                        </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'competition:list' %}">Competitions</a>
+                        <li class="nav-item" rel="hasPart"><div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="nav-link" property="discussionUrl"  href="{% url 'competition:list' %}">Competitions</a></div></div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'category:listofcategories' %}">Categories</a>
+                        <li class="nav-item" rel="hasPart"><div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="nav-link" property="discussionUrl"  href="{% url 'category:listofcategories' %}">Categories</a></div></div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'competition:createcompetition' %}">Create competition</a>
+                        <li class="nav-item" rel="hasPart"><div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="nav-link" property="discussionUrl" href="{% url 'competition:createcompetition' %}">Create competition</a>
+                        </div></div>
                         </li>
-                        <li class="nav-item px-3">
-                            <a class="btn btn-outline-secondary" href="{% url 'account:logout' %}">Logout</a>
+                        <li class="nav-item px-3" rel="hasPart"><div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="btn btn-outline-secondary" property="discussionUrl" href="{% url 'account:logout' %}">Logout</a>
+                        </div></div>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="{% url 'account:signup' %}">Sign Up</a>
-                            <a class="btn btn-outline-secondary" href="{% url 'account:login' %}">Login</a>
+                            <div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="btn btn-outline-primary" property="discussionUrl" href="{% url 'account:signup' %}">Sign Up</a>
+                            </div></div><div rel="hasPart"><div typeof="SiteNavigationElement">
+                            <a class="btn btn-outline-secondary" property="discussionUrl" href="{% url 'account:login' %}">Login</a>
+                        </div></div>
                         </li>
                     {% endif %}
                 </ul>
 
                 <ul class="navbar-nav ml-auto px-5">
                     {% if user.is_authenticated %}
+                        <div rel="hasPart"><div typeof="SiteNavigationElement">
                         <form class="form-inline" action="{% url 'competition:search' %}" method="get">
-                            <input name="q-comp" class="form-control mr-sm-2" type="search" placeholder="Search competitions" aria-label="Search">
+                            <input name="q-comp" class="form-control mr-sm-2" type="search"
+                                   placeholder="Search competitions" aria-label="Search">
                             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                         </form>
+                        </div></div>
                     {% endif %}
                 </ul>
         </div>

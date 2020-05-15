@@ -29,12 +29,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<div vocab="http://schema.org/" typeof="WebSite">
+    <div rel="author" class="invisible">
+        <div typeof="Organization">
+            <div property="name">Lleidahack</div>
+            <div rel="member">
+                <div typeof="Person">
+                    <div property="name">Paula Gallucci</div>
+                </div>
+            </div>
+            <div rel="member">
+                <div typeof="Person">
+                    <div property="name">Marta Albets</div>
+                </div>
+            </div>
+            <div rel="member">
+                <div typeof="Person">
+                    <div property="name">Oriol Alàs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div property="inLanguage" class="invisible">English</div>
     <div class="pt-1 px-5">
         <div class="px-4 py-5">
             {% block content %}
             {% endblock %}
         </div>
     </div>
+</div>
 </body>
 
 </html>
