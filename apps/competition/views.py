@@ -152,7 +152,6 @@ class CompetitionDetail(LoginRequiredMixin, generic.DetailView, generic.CreateVi
         context['groups'] = teams_of_competition.order_by('-ranking__score')
         context['haveTeam'] = False
         for group in context['groups']:
-            print(group)
             if group.submition and len(context['data']) < 10:
                 if group.ranking:
                     context['data'].append(
@@ -347,14 +346,12 @@ class RateAnswerCompetition(LoginRequiredMixin, UserPassesTestMixin, generic.Cre
         return super().get_context_data(**context)
 
     def form_valid(self, form):
-        print(self.request.POST)
         competition = Competition.objects.get(pk=self.kwargs['pk'])
         teams = Team.objects.filter(competition=competition)
         for team in teams:
             if team.submition: 
                 team.ranking = Ranking.create(self.request.POST.get("puntuation" + str(team.id)))
                 team.ranking.save()
-                print(team.ranking)
                 team.save()
             else:
                 team.ranking = Ranking.create(0)

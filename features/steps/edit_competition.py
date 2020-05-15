@@ -15,7 +15,6 @@ def step_impl(context, title):
     form = context.browser.find_by_tag('form')
     if form:
         for heading in context.table.headings:
-            print(heading)
             context.browser.fill(heading, context.table[0][heading])
         context.browser.find_by_value('update').first.click()
 
