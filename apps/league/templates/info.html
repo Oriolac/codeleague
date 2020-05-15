@@ -4,9 +4,10 @@
 {% block title %}What's Codeleague?{% endblock %}
 
 {% block content %}
-    <div class="container px-12">
-        <div class="jumbotron">
-            <div class="container-fluid text-center">
+<div class="container px-12">
+    <div class="jumbotron">
+        <div class="container-fluid text-center">
+            <div vocab="http://schema.org/" typeof="Hackathon">
                 <img class="center-fit" width="40%" src="{% static 'imgs/CodeleagueTransp.png' %}"
                      alt="Architecture"><br><br><br>
                 <h4><b>What is Codeleague?</b></h4><br>
@@ -51,5 +52,6 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
