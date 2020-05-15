@@ -77,6 +77,9 @@ WSGI_APPLICATION = 'codeleague.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DATABASES = {}
+DATABASES['default'] = os.getenv('POSTGRES_URL')
+"""
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DJANGO_SQL_POSTGRES_ENGINE'),
@@ -87,7 +90,7 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD')
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
