@@ -287,3 +287,5 @@ uploads/
 #Evitar subir la base de datos en si misma
 postgresdata/data/
 # End of https://www.gitignore.io/api/pycharm,python,venv,visualstudiocode,django
+
+.idea/
