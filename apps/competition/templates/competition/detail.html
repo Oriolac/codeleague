@@ -34,7 +34,7 @@
     }
 </script>
     <div class="jumbotron">
-        <div class="container">
+        <div class="container ">
             {% if competition.owner != user and competition.is_inscription_opened and haveTeam == False%}
             <a name="create_team" href='{% url 'competition:create-team' competition.id %}' class="btn btn-primary float-right btn-lg">Create a Group!
             </a>

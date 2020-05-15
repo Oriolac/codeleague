@@ -1,11 +1,11 @@
 <header>
-    <nav class="navbar fixed-top navbar-light justify-content-between navbar-expand-lg " style="background-color: #B6EC83;" role="navigation">
+    <nav class="navbar fixed-top navbar-light justify-content-between navbar-expand-lg px-4" style="background-image: linear-gradient(15deg, #87e0e4 0%, #f0d660 100%);" role="navigation">
         <a class="navbar-brand pl-5" href="/">Codeleague</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-            <div class="collapse navbar-collapse" id="navbarText">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'league:info' %}">Info </a>
@@ -42,13 +42,14 @@
                 <ul class="navbar-nav ml-auto px-5">
                     {% if user.is_authenticated %}
                         <form class="form-inline" action="{% url 'competition:search' %}" method="get">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search competitions" aria-label="Search">
+                            <input name="q-comp" class="form-control mr-sm-2" type="search" placeholder="Search competitions" aria-label="Search">
                             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     {% endif %}
                 </ul>
         </div>
     </nav>
+
 </header>
 
 

@@ -70,7 +70,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Oriolac'])
         team.members.add(self.USERS['Marta99'])
         team.competition = comp
-        team.ranking = Ranking.create(100).save()
+        team.ranking = Ranking.objects.create(score=100).save()
         team.submition = Submit.objects.create(description='Submition of Patatas de Gimeno',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2016, month=5, day=10, hour=20,
@@ -85,7 +85,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['sergisi'])
         team.members.add(self.USERS['Doasy'])
         team.competition = comp
-        team.ranking = Ranking.create(95).save()
+        team.ranking = Ranking.objects.create(score=95).save()
         team.submition = Submit.objects.create(description='Submition of CodePlayers',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2016, month=6, day=5, hour=10,
@@ -119,7 +119,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['pau1838'])
         team.members.add(self.USERS['horno'])
         team.competition = comp
-        team.ranking = Ranking.create(80).save()
+        team.ranking = Ranking.objects.create(score=80).save()
         team.submition = Submit.objects.create(description='Submition of SegmentationFault',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=6, day=5, hour=22,
@@ -131,7 +131,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['quimpm'])
         team.members.add(self.USERS['Oriolac'])
         team.competition = comp
-        team.ranking = Ranking.create(70).save()
+        team.ranking = Ranking.objects.create(score=70).save()
         team.submition = Submit.objects.create(description='Submition of LeetCode',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2021, month=3, day=20, hour=17,
@@ -143,7 +143,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Marta99'])
         team.members.add(self.USERS['sergisi'])
         team.competition = comp
-        team.ranking = Ranking.create(70).save()
+        team.ranking = Ranking.objects.create(score=70).save()
         team.submition = Submit.objects.create(description='Submition of LeetCode',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2021, month=3, day=20, hour=17,
@@ -176,7 +176,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Marta99'])
         team.members.add(self.USERS['pau1838'])
         team.competition = comp
-        team.ranking = Ranking.create(90).save()
+        team.ranking = Ranking.objects.create(score=90).save()
         team.submition = Submit.objects.create(description='Submition of APIs4Win',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2021, month=7, day=20, hour=17,
@@ -190,7 +190,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['horno'])
         team.members.add(self.USERS['sergisi'])
         team.competition = comp
-        team.ranking = Ranking.create(105).save()
+        team.ranking = Ranking.objects.create(score=105).save()
         team.submition = Submit.objects.create(description='Submition of Haskellerians',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=3, day=7, hour=19,
@@ -202,7 +202,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Doasy'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(55).save()
+        team.ranking = Ranking.objects.create(score=55).save()
         team.submition = Submit.objects.create(description='Submition of Supercoders',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=5, day=13, hour=19,
@@ -238,7 +238,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['latra'])
         team.members.add(self.USERS['Marta99'])
         team.competition = comp
-        team.ranking = Ranking.create(120).save()
+        team.ranking = Ranking.objects.create(score=120).save()
         team.submition = Submit.objects.create(description='Submition of Lethal',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2023, month=10, day=7, hour=19,
@@ -252,7 +252,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Oriolac'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(140).save()
+        team.ranking = Ranking.objects.create(score=140).save()
         team.submition = Submit.objects.create(description='Submition of PHPHaters',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2023, month=5, day=20, hour=22,
@@ -289,7 +289,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Oriolac'])
         team.members.add(self.USERS['sergisi'])
         team.competition = comp
-        team.ranking = Ranking.create(130).save()
+        team.ranking = Ranking.objects.create(score=150).save()
         team.submition = Submit.objects.create(description='Submition of Aniquilators',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=5, day=17, hour=22,
@@ -302,7 +302,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['latra'])
         team.members.add(self.USERS['pau1838'])
         team.competition = comp
-        team.ranking = Ranking.create(170).save()
+        team.ranking = Ranking.objects.create(score=170).save()
         team.submition = Submit.objects.create(description='Submition of Dominators',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=5, day=20, hour=23,
@@ -336,7 +336,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['pau1838'])
         team.members.add(self.USERS['Oriolac'])
         team.competition = comp
-        team.ranking = Ranking.create(90).save()
+        team.ranking = Ranking.objects.create(score=90).save()
         team.submition = Submit.objects.create(description='Submition of Code Warriors',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2023, month=7, day=1, hour=12,
@@ -350,7 +350,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['quimpm'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(110).save()
+        team.ranking = Ranking.objects.create(score=110).save()
         team.submition = Submit.objects.create(description='Submition of The Bytes',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2023, month=5, day=20, hour=22,
@@ -362,7 +362,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Doasy'])
         team.members.add(self.USERS['sergisi'])
         team.competition = comp
-        team.ranking = Ranking.create(100).save()
+        team.ranking = Ranking.objects.create(score=100).save()
         team.submition = Submit.objects.create(description='Submition of Veterans',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2025, month=6, day=12, hour=22,
@@ -397,7 +397,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Oriolac'])
         team.members.add(self.USERS['pau1838'])
         team.competition = comp
-        team.ranking = Ranking.create(90).save()
+        team.ranking = Ranking.objects.create(score=90).save()
         team.submition = Submit.objects.create(description='Submition of Your Worst Nightmare',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=5, day=25, hour=15,
@@ -410,7 +410,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['horno'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(85).save()
+        team.ranking = Ranking.objects.create(score=85).save()
         team.submition = Submit.objects.create(description='Submition of Challengers',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=4, day=9, hour=17,
@@ -444,7 +444,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Oriolac'])
         team.members.add(self.USERS['Doasy'])
         team.competition = comp
-        team.ranking = Ranking.create(85).save()
+        team.ranking = Ranking.objects.create(score=85).save()
         team.submition = Submit.objects.create(description='Submition of Unbeatables',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2024, month=2, day=9, hour=21,
@@ -477,7 +477,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['notaiax'])
         team.members.add(self.USERS['horno'])
         team.competition = comp
-        team.ranking = Ranking.create(95).save()
+        team.ranking = Ranking.objects.create(score=95).save()
         team.submition = Submit.objects.create(description='Submition of Cyberfighters',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=8, day=22, hour=17,
@@ -489,7 +489,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Marta99'])
         team.members.add(self.USERS['Oriolac'])
         team.competition = comp
-        team.ranking = Ranking.create(70).save()
+        team.ranking = Ranking.objects.create(score=70).save()
         team.submition = Submit.objects.create(description='Submition of Cyber Kings',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=8, day=24, hour=19,
@@ -523,7 +523,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Doasy'])
         team.members.add(self.USERS['Marta99'])
         team.competition = comp
-        team.ranking = Ranking.create(100).save()
+        team.ranking = Ranking.objects.create(score=100).save()
         team.submition = Submit.objects.create(description='Submition of Tech Divas',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=8, day=25, hour=12,
@@ -535,7 +535,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['pau1838'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(85).save()
+        team.ranking = Ranking.objects.create(score=85).save()
         team.submition = Submit.objects.create(description='Submition of Cyberlovers',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2023, month=5, day=14, hour=11,
@@ -547,7 +547,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['sergisi'])
         team.members.add(self.USERS['Oriolac'])
         team.competition = comp
-        team.ranking = Ranking.create(100).save()
+        team.ranking = Ranking.objects.create(score=100).save()
         team.submition = Submit.objects.create(description='Submition of Workaholics',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2020, month=11, day=29, hour=23,
@@ -559,7 +559,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['quimpm'])
         team.members.add(self.USERS['horno'])
         team.competition = comp
-        team.ranking = Ranking.create(85).save()
+        team.ranking = Ranking.objects.create(score=85).save()
         team.submition = Submit.objects.create(description='Submition of CodeSquad',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2022, month=6, day=22, hour=20,
@@ -593,7 +593,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['Marta99'])
         team.members.add(self.USERS['Doasy'])
         team.competition = comp
-        team.ranking = Ranking.create(100).save()
+        team.ranking = Ranking.objects.create(score=100).save()
         team.submition = Submit.objects.create(description='Submition of estreSAT Solver',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2019, month=9, day=10, hour=20,
@@ -606,7 +606,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['horno'])
         team.members.add(self.USERS['notaiax'])
         team.competition = comp
-        team.ranking = Ranking.create(80).save()
+        team.ranking = Ranking.objects.create(score=80).save()
         team.submition = Submit.objects.create(description='Submition of fracaSAT Solver',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2021, month=5, day=10, hour=15,
@@ -618,7 +618,7 @@ class Command(BaseCommand):
         team.members.add(self.USERS['pau1838'])
         team.members.add(self.USERS['quimpm'])
         team.competition = comp
-        team.ranking = Ranking.create(75).save()
+        team.ranking = Ranking.objects.create(score=75).save()
         team.submition = Submit.objects.create(description='Submition of The Best SAT Solver',
                                                githuburl='https://github.com/Oriolac/codeleague/',
                                                submit_date=datetime.datetime(year=2021, month=4, day=22, hour=20,

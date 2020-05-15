@@ -1,13 +1,13 @@
 {% load static %}
-<div class="container" xmlns:competition="http://www.w3.org/1999/xhtml">
+<div class="container" xmlns:competition="http://www.w3.org/1999/xhtml" >
     <div class="container-fluid text-center">
         <h1>COMPETITIONS</h1>
     </div>
     <br>
-    <div class="row pb-3">
+    <div class="row pb-3 ">
         {% for compet in competitions|slice:":6" %}
-            <div class="col-6 pb-3">
-                <div class="card" name="card_{{ compet.title }}">
+            <div class="col-6 pb-3 d-flex align-items-stretch">
+                <div class="card h-200" style="width: 36rem;" name="card_{{ compet.title }}">
                     <div class="card-body">
                         {% if compet.owner == user %}
                             <a href="{% url 'competition:edit' compet.pk %}"
@@ -59,7 +59,7 @@
 
                             <div class="col-3">
                                 <a href="#" class="btn badge-pill btn-primary float-right" data-toggle="modal"
-                                   data-target="#modal{{ compet.id }}">+ info</a>
+                                   data-target="#modal{{ compet.id }}">More info</a>
                             </div>
                         </div>
                     </div>
@@ -70,62 +70,65 @@
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="col">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ compet.title }}</h5>
-                            </div>
-                            <div class="col">
-                                <div class="row pb-1">
-                                    {% if compet.is_competition_opened %}
-                                        <span class="badge badge-success"
-                                              style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
-                                    {% else %}
-                                        <span class="badge badge-danger"
-                                              style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Finalized</span>
-                                    {% endif %}
-                                </div>
-                                <div class="row">
-                                    {% if compet.is_inscription_opened %}
-                                        <span class="badge badge-success"
-                                              style="background-color: #74DA47; border-color: #74DA47; color: #000">Inscriptions opened</span>
-                                    {% else %}
-                                        <span class="badge badge-danger"
-                                              style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Inscriptions closed</span>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-xs-12 float-right">
-                                <div class="row">
-                                    <a href='{% url "competition:detail" compet.id %}' type="button"
-                                       class="btn btn-outline-primary">Go to competition page</a>
-                                </div>
-                            </div>
-                            <div class="col-xs-12">
 
-
-                                <div class="row">
-                                    {{ compet.description|slice:"0:240" }}...
+                                <div class="modal-header">
+                                    <div class="col-8">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{ compet.title }}</h5>
+                                    </div>
+                                    <div class="col-4   ">
+                                        <div class="row pb-1">
+                                            {% if compet.is_competition_opened %}
+                                                <span class="badge badge-success"
+                                                      style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
+                                            {% elif compet.is_inscription_opened %}
+                                                <span class="badge badge-warning"
+                                                      style="background-color: #dacb47; border-color: #dacb47; color: #000">Inscriptions</span>
+                                            {% else %}
+                                                <span class="badge badge-danger"
+                                                      style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="row">
+                                            {% if compet.is_inscription_opened %}
+                                                <span class="badge badge-success"
+                                                      style="background-color: #74DA47; border-color: #74DA47; color: #000">Inscriptions opened</span>
+                                            {% else %}
+                                                <span class="badge badge-danger"
+                                                      style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Inscriptions closed</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <br>
+                                <div class="modal-body">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <h6><p class="font-weight-bold d-inline">Owner:</p> <a href="{% url "account:user_detail" compet.owner.pk %}">{{ compet.owner }}</a></h6>
+                                        </div>
+                                        <div class="row">
+                                            <p class="font-weight-bold d-inline">Description: </p> <p class="d-inline"> {{ compet.description|slice:"0:240" }}...</p>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="container row">
+                                        <h6><p class="font-weight-bold d-inline">Date:</p> {{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }} -
+                                            {{ compet.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</h6>
+                                    </div>
+                                    <div class="container row">
+                                        <h6><p class="font-weight-bold d-inline">Time:</p> {{ compet.data_start_competition|time }}
+                                            - {{ compet.data_finish_competition|time }}</h6>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <a href='{% url "competition:detail" compet.id %}' type="button"
+                                                    class="btn btn-outline-primary ">Go to competition page</a>
+                                        <div class="float-right">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                </div>
                             </div>
-                            <div class="container row">
-                                <h6>Date: {{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }} -
-                                    {{ compet.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</h6>
-                            </div>
-                            <div class="container row">
-                                <h6>Time: {{ compet.data_start_competition|time }}
-                                    - {{ compet.data_finish_competition|time }}</h6>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         {% endfor %}

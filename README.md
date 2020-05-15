@@ -71,6 +71,9 @@ DJANGO_ADMIN_USERNAME=admin
 DJANGO_ADMIN_PASSWORD=admin
 DJANGO_ADMIN_EMAIL=admin@example.com
 
+AWS_KEY=<AWS_KEY>
+AWS_SECRET=<AWS_SECRET>
+AWS_BUCKET=<AWS_BUCKET>
 #------------------------------------------------------------------------------#
 #--------------------------- Postgres configuration ---------------------------#
 #------------------------------------------------------------------------------#
@@ -93,6 +96,8 @@ AWS_BUCKET=[Your AWS Bucket Name]
 * [Docker](https://www.docker.com) - Container management
 * [Heroku](https://www.heroku.com) - Cloud Application Platform
 * [PostgreSQL](https://www.postgresql.org) - Open Source Database
+* [AWS](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - Amazon Web Services
+* [Google Charts API](https://developers.google.com/chart/) - Ranking Charts
 
 ## Authors
 

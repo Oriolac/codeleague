@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views import generic
+from django import http
 from django.views.generic import DetailView, UpdateView
+from django.views.generic.edit import ModelFormMixin
 
 from apps.account.forms import UserCreationForm, AuthenticationForm
 from apps.account.models import LeagueUser
@@ -13,7 +15,7 @@ from apps.league.models import Team, Competition
 
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = LeagueUser
-    fields = ['username', 'GitHub']
+    fields = ['username', 'github_link']
     template_name = 'update_profile.html'
 
     def get_context_data(self, **kwargs):
@@ -25,7 +27,7 @@ class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return user.pk == self.request.user.pk
 
     def get_success_url(self):
-        return reverse_lazy('league:home')
+        return reverse_lazy('account:user_detail', kwargs={'pk': self.kwargs.get('pk')})
 
 
 class SignUp(generic.CreateView):

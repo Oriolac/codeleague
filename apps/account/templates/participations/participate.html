@@ -8,10 +8,35 @@
             {% if user.is_authenticated %}
                 <h1>Hey {{ duser.username }}! You have participated on:</h1>
                 <ul>
+                    <div class="row">
+                        {% for competition in competitions %}
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-body px-5 py-3">
+                                        <div>
+                                            <h4 class="d-inline">{{ competition.title }}</h4>
+                                        </div>
+                                        <div class="pl-3">
 
-                {% for competition in competitions %}
-                    <li name="{{ competition.title }}">{{competition.title}}</li>
-                {% endfor %}
+                                            {% if competition.is_competition_opened %}
+                                                <span class="badge badge-success"
+                                                      style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
+                                            {% elif competition.is_inscription_opened %}
+                                                <span class="badge badge-warning"
+                                                      style="background-color: #dacb47; border-color: #dacb47; color: #000">Inscriptions</span>
+                                            {% else %}
+                                                <span class="badge badge-warning"
+                                                      style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
+                                            {% endif %}
+                                            <div>
+                                                <a href="{% url "competition:detail" competition.pk %}">Go here!</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </ul>
 
             {% else %}

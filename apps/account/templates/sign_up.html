@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_filters %}
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
@@ -17,7 +17,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Compete!</h5>
-                            <p class="card-text">Find a competition and enjoy programming! That's what you have registered, didn't you?</p>
+                            <p class="card-text">Find a competition and enjoy programming! That's what you have
+                                registered, didn't you?</p>
                             <a href="{% url 'league:home' %}" class="btn btn-primary float-right">Let's hack</a>
                         </div>
                     </div>
@@ -47,43 +48,17 @@
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-10">
+                        <h2>Sign up</h2>
                         <form method="post">
-                            <h2>Sign up</h2>
-                            <div method="post" class="needs-validation" novalidate>
-                                {% csrf_token %}
-                                <div class="container">
-                                    {% for field in form %}
-                                        <div class="row">
-                                            {{ field.errors }}
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col-5">
-                                                <label for="{{ field.id_for_label }}">{{ field.label_tag }} </label>
-                                            </div>
-                                            <div class="column">
-                                                {{ field }}
-                                            </div>
-                                            <div class="w-100"></div>
-                                        </div>
-
-                                        {% if field.help_text %}
-                                            <small style="color: grey">{{ field.help_text }}</small>
-                                        {% endif %}
-                                        {% for error in field.errors %}
-                                            <p style="color: red">{{ error }}</p>
-                                        {% endfor %}
-
-                                    {% endfor %}
-                                    <div class="row">
-                                        <div class="col-5"></div>
-                                        <div class="col">
-                                            <button class="btn btn-warning" type="submit">Sign Up</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            {% csrf_token %}
+                            <!--
+                                      csrf_token is a tag for security concerns, namely to prevent CSRF Attack.
+                                      https://www.netsparker.com/blog/web-security/csrf-cross-site-request-forgery/
+                                      -->
+                            {{ form|crispy }}
+                            <button class="btn btn-primary" value="login" type="submit">Login</button>
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
     <h1>Hi, {{ leagueuser.username }}</h1>
         <form method="post">{% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" value="Update">
+            <input class="btn btn-success" type="submit" value="Update">
         </form>
     </div>
 {% endblock %}

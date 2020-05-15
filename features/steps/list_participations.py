@@ -21,5 +21,5 @@ def step_impl(context, user):
     :type context: behave.runner.Context
     """
     for row in context.table:
-        assert row['title'] == context.browser.find_by_name(row['title']).first.text
+        assert row['title'] == context.browser.find_by_text(row['title']).first.text
 
