@@ -3,28 +3,32 @@
 {% block title %}Your account{% endblock %}
 
 {% block content %}
-    <div class="container p-6">
-        <div class="jumbotron p">
-            {% if user.is_authenticated %}
-                {% if user == detailuser %}
-                    <a href="{% url 'account:edit' user.pk %}"
-                       class="btn btn-outline-primary float-right">
-                        <img width="20px"
-                             src="{% static 'imgs/icons/edit.png' %}">Edit
-                    </a>
-                {% endif %}
-                <h1>Hey, it's {{ detailuser.username }}</h1>
-                <p>You can see your account details here</p>
-                <div class="card">
-                    <div class="card-body">
+    <div vocab="http://schema.org/" typeof="ProfilePage">
+        <div class="container p-6">
+            <div class="jumbotron p">
+                {% if user.is_authenticated %}
+                    {% if user == detailuser %}
+                        <a href="{% url 'account:edit' user.pk %}"
+                           class="btn btn-outline-primary float-right">
+                            <img width="20px"
+                                 src="{% static 'imgs/icons/edit.png' %}">Edit
+                        </a>
+                    {% endif %}
+                    <div rel="about"><div typeof="Person">
+                        <h1>Hey, it's <div class="d-inline" property="name">{{ detailuser.username }}</div></h1>
+                        <p>You can see your account details here</p>
+                        <div class="card">
+                            <div class="card-body">
 
-                        <p>Github Url: <a href="{{ detailuser.github_link }}" class="
-                                          text-decoration-none">{{ detailuser.github_link }}</a></p>
+                                <p>Github Url: <a href="{{ detailuser.github_link }}" class="
+                                          text-decoration-none" property="url" value="{{ detailuser.github_link }}">{{ detailuser.github_link }}</a></p>
+                                <p>Email: <div class="d-inline" property="email">{{ detailuser.email }}</div></p>
+                            </div>
+                        </div></div>
                     </div>
-                </div>
-            {% else %}
-                <p>You are not logged in. Log in to see your profile</p>
-            {% endif %}
+                {% else %}
+                    <p>You are not logged in. Log in to see your profile</p>
+                {% endif %}
+            </div>
         </div>
-    </div>
 {% endblock %}

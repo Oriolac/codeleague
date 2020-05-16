@@ -4,8 +4,14 @@
 {% block title %}What's Codeleague?{% endblock %}
 
 {% block content %}
-    <div class="container px-12">
-        <div class="jumbotron">
+<div class="container px-12">
+    <div class="jumbotron">
+        <div vocab="http://schema.org/" typeof="AboutPage">
+<span rel="author" class="invisible">
+    <div typeof="Organization">
+        <div property="name">Lleidahack</div>
+    </div>
+</span>
             <div class="container-fluid text-center">
                 <img class="center-fit" width="40%" src="{% static 'imgs/CodeleagueTransp.png' %}"
                      alt="Architecture"><br><br><br>
@@ -35,11 +41,13 @@
                 </p><br>
                 <h4><b>How the winners will be announced?</b></h4><br>
                 <p>
-                    Even every competition will have different challenges. Despite this, the way to evaluate every group
+                    Even every competition will have different challenges. Despite this, the way to evaluate every
+                    group
                     and <br>proclaim a winner will be the same.
                 </p>
                 <p>
-                    In all competitions, every challenge will have a score. When you deliver any challenge, depending
+                    In all competitions, every challenge will have a score. When you deliver any challenge,
+                    depending
                     on how <br>you have solved it, your group will add more or less points to the scoreboard.
                 </p>
                 <p>During the competition a ranking will be continuously updated, and when the competition finishes,
@@ -51,5 +59,6 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 

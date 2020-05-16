@@ -1,110 +1,170 @@
 {% extends 'base.html' %}
 
 
-
-
 {% load static %}
-{% block title %}{{competition.title}}{% endblock %}
+{% block title %}{{ competition.title }}{% endblock %}
 {% block content %}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-    var a = {{ data|safe }};
+    <div vocab="http://schema.org/" typeof="Hackathon">
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            var a = {{ data|safe }};
 
-    google.load('visualization', '1.0', {'packages':['corechart']});
-    google.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = new google.visualization.arrayToDataTable(a);
-        var view = new google.visualization.DataView(data);
+            google.load('visualization', '1.0', {'packages': ['corechart']});
+            google.setOnLoadCallback(drawChart);
 
-        view.setColumns([0, 1,
-                    { calc: "stringify",
+            function drawChart() {
+                var data = new google.visualization.arrayToDataTable(a);
+                var view = new google.visualization.DataView(data);
+
+                view.setColumns([0, 1,
+                    {
+                        calc: "stringify",
                         sourceColumn: 1,
                         type: "string",
-                        role: "annotation" },
+                        role: "annotation"
+                    },
                     2]);
-        var options = {
-            title: "Puntuation statistics",
-            width: 380,
-            height: 400,
-            bar: {groupWidth: "95%"},
-            legend: { position: "none" },
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-        chart.draw(view, options);
-    }
-</script>
-    <div class="jumbotron">
-        <div class="container ">
-            {% if competition.owner != user and competition.is_inscription_opened and haveTeam == False%}
-            <a name="create_team" href='{% url 'competition:create-team' competition.id %}' class="btn btn-primary float-right btn-lg">Create a Group!
-            </a>
-            {% elif competition.owner == user%}
-                <div class="float-right pr-3">
-                <a href="{% url 'competition:edit' competition.pk %}"
-                   class="btn btn-outline-primary float-right btn-lg">
-                    <img width="20px"
-                         src="{% static 'imgs/icons/edit.png' %}">Edit
-                </a>
-                </div>
-                {% if competition.is_competition_ended and competition.finalized == False %}
-                    <div class="float-right pr-3">
-                    <a href="{% url 'competition:valorate-submitions' competition.pk %}"
-                    class="btn btn-outline-primary float-right btn-lg">
-                        <img width="20px"
-                            src="{% static 'imgs/icons/edit.png' %}">Valorate
-                    </a>
-                    </div>                
-                {% endif %}
-                {% if not competition.is_competition_open %}
-                <div class="float-right pr-3">
-                <a name="delete_competition" href="{% url 'competition:delete' competition.pk %}" class="btn btn-danger float-right">Delete Competition</a>
-                </div>
-                {% endif %}
-            {% endif %}
-
-            <div class="row">
-                <div class="col-10">
-                    <h1>{{ competition.title }}</h1>
-                    <p>{{ competition.description }}</p>
-                </div>
-                <div class="col-2">
-                    {% if haveTeam and competition.is_competition_opened %}
-                    <div class="float-left container">
-                    <a href='{% url "competition:submit-answer" competition.id %}' name="submit_resolution" type="button"
-                                       class="btn btn-primary">Publish solution</a>
-                        </div>
-                    {% endif %}
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <ul class="list-unstyled">
-                        {% if competition.finalized %}
-                        <div class="card ">
-                            <div class="" id="columnchart_values"></div>
-                        </div>
-                        {% endif %}
-                    {% if  competition.files.all|length > 0 %}
-                        <h3 class="mt-0 mb-1">Files</h3>
-                        {% for file in files %}
-                            <li class="media">
-                            <div style="margin:5px" class="container">
-                                <div class="media-body">
-                                <a href="{{file.1}}" download="{{file.0}}" class="btn btn-primary btn-sm">
-                                    <img width="20px" src="{% static 'imgs/icons/document.svg' %}" class="mr-3">{{file.0}}
+                var options = {
+                    title: "Puntuation statistics",
+                    width: 380,
+                    height: 400,
+                    bar: {groupWidth: "95%"},
+                    legend: {position: "none"},
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                chart.draw(view, options);
+            }
+        </script>
+        <div class="jumbotron">
+            <div class="container ">
+                <div class="float-right">
+                    <div class="row">
+                        {% if competition.owner != user and competition.is_inscription_opened and haveTeam == False %}
+                            <a name="create_team" href='{% url 'competition:create-team' competition.id %}'
+                               class="btn btn-primary float-right btn-lg">Create a Group!
+                            </a>
+                        {% elif competition.owner == user %}
+                            <div class="float-right pr-3">
+                                <a href="{% url 'competition:edit' competition.pk %}"
+                                   class="btn btn-outline-primary float-right btn-lg">
+                                    <img width="20px"
+                                         src="{% static 'imgs/icons/edit.png' %}">Edit
                                 </a>
-                                </div>
                             </div>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-                    </ul>
+                            {% if competition.is_competition_ended and competition.finalized == False %}
+                                <div class="float-right pr-3">
+                                    <a href="{% url 'competition:valorate-submitions' competition.pk %}"
+                                       class="btn btn-outline-primary float-right btn-lg">
+                                        <img width="20px"
+                                             src="{% static 'imgs/icons/edit.png' %}">Valorate
+                                    </a>
+                                </div>
+                            {% endif %}
+                            {% if not competition.is_competition_open %}
+                                <div class="float-right pr-3">
+                                    <a name="delete_competition" href="{% url 'competition:delete' competition.pk %}"
+                                       class="btn btn-danger float-right">Delete Competition</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-8">{% include "team/join.html" %}</div>
-            </div>
+                <div class="row">
+                    <div class="col-10">
+                        <h1 property="name" class="d-inline">{{ competition.title }}</h1>
+                        <h2 property="eventStatus" class="d-inline">
+                            {% if competition.is_competition_opened %}
+                                <span class="badge badge-success"
+                                      style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
+                            {% elif competition.is_inscription_opened %}
+                                <span class="badge badge-warning"
+                                      style="background-color: #dacb47; border-color: #dacb47; color: #000">Inscriptions</span>
+                            {% else %}
+                                <span class="badge badge-warning"
+                                      style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
 
+                            {% endif %}
+                        </h2>
+                        <p property="description">{{ competition.description }}</p>
+
+                    </div>
+                    <div class="col-2">
+
+                        <div class="row">
+                            {% if haveTeam and competition.is_competition_opened %}
+                                <div class="float-left container">
+                                    <a href='{% url "competition:submit-answer" competition.id %}'
+                                       name="submit_resolution"
+                                       type="button"
+                                       class="btn btn-primary">Publish solution</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row pl-5">
+                    <h6 class="d-inline">Date:
+                        <div class="d-inline"
+                             property="startDate"> {{ competition.data_start_competition|date:"SHORT_DATE_FORMAT" }}</div>
+                        -
+                        <div class="d-inline"
+                             property="endDate">{{ competition.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</div>
+                    </h6>
+                </div>
+                <div class="row pl-5">
+                    <div rel="organizer">
+                        <div typeof="Person">
+                            <div class="d-inline invisible" property="name">
+                                {{ competition.owner }}
+                            </div>
+
+                            <a property="url" class="d-inline invisible" value="{{ compet.owner.github_link }}"></a>
+                            Owner: <a
+                                href="{% url 'account:user_detail' competition.owner.pk %}">{{ competition.owner }}
+
+                        </a></div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <ul class="list-unstyled">
+                            {% if competition.finalized %}
+                                <div class="card ">
+                                    <div class="" id="columnchart_values"></div>
+                                </div>
+                            {% endif %}
+                            {% if  competition.files.all|length > 0 %}
+                                <h3 class="mt-0 mb-1">Files</h3>
+                                {% for file in files %}
+                                    <li class="media">
+                                        <div style="margin:5px" class="container">
+                                            <div class="media-body">
+                                                <a href="{{ file.1 }}" download="{{ file.0 }}"
+                                                   class="btn btn-primary btn-sm">
+                                                    <img width="20px" src="{% static 'imgs/icons/document.svg' %}"
+                                                         class="mr-3">{{ file.0 }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-8">{% include "team/join.html" %}</div>
+                </div>
+                <div rel="location" class="invisible">
+                    <div typeof="VirtualLocation">
+                        <a rel="url"
+                           href="{{ request.get_host }}{% url 'competition:detail' competition.pk %}"></a>
+                    </div>
+                </div>
+
+                <span class="invisible" property="inLanguage">English</span>
+                <span class="invisible" property="isAccessibleForFree">True</span>
+            </div>
         </div>
     </div>
 {% endblock %}
