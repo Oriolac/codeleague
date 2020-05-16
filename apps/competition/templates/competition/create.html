@@ -4,21 +4,44 @@
 {% block title %}Creating a new Competition{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="jumbotron">
+<div class="jumbotron">
 
-        <div class="container">
-            <div class="container col-10">
-                <h1 >Creating your competition...</h1>
-            </div>
-            <div class="row d-flex justify-content-center" vocab="http://schema.org/" typeof="AddAction">
-                <div class="container col-10">
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button class="btn btn-warning" id="create" name="create" value="create" type="submit">Sign Up</button>
-                    </form>
+    <div class="container">
+        <div class="container col-10">
+            <h1>Creating your competition...</h1>
+        </div>
+        <div class="row d-flex justify-content-center" vocab="http://schema.org/" typeof="AddAction">
+                <span rel="object" class="invisible">
+                <div typeof="Hackathon">
+                    <span property="eventAttendanceMode" value="Online"/>
+                        <div rel="organizer" class="invisible">
+                            <div typeof="person">
+                                <a property="url" value="{{user.github_link}}"></a>
+                                <a property="name" value="{{user.username}}"></a>
+                                <a property="email" value="{{user.email}}"></a>
+                            </div>
+                        </div>
+                        <div rel="location" class="invisible">
+                            <div typeof="VirtualLocation">
+                                <a rel="url" href="{{ request.get_host }}{% url 'competition:createcompetition' %}"></a>
+                            </div>
+                        </div>
+                        <div property="description" value="Descripció de la competició a crear"></div>
+                        <div property="name" value="Nom de la competició a crear"></div>
+                        <div property="startDate" value="Data d'inci de la competició"></div>
+                        <div property="endDate" value="Data de fi de la competició"></div>
+                        <div property="eventStatus" value="Opened"></div>
                 </div>
+                </span>
+            <div class="container col-10">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-warning" id="create" name="create" value="create" type="submit">Sign Up
+                    </button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
