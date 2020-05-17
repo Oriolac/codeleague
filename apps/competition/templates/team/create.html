@@ -9,10 +9,12 @@
     <div class="container">
         <div vocab="http://schema.org/" typeof="AddAction">
             <span rel="object" class="invisible">
-    <div typeof="PerformingGroup">
-        <div property="alumni">{{self.request.user}}</div>
-    </div>
-</span>
+                <div typeof="PerformingGroup">
+                    <a property="alumni" value="{{user.username}}"></a>
+                    <a property="knowsAbout" value="{{user.github_link}}"></a>
+                    <a property="email" value="{{user.email}}"></a>
+                </div>
+            </span>
             <h1>{{ competition.title }}</h1>
             <form method="post">
                 {% csrf_token %}
