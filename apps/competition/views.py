@@ -333,6 +333,7 @@ class RateAnswerCompetition(LoginRequiredMixin, UserPassesTestMixin, generic.Cre
 
     def get_context_data(self, **kwargs):
         context = {}
+        context['competition'] = Competition.objects.filter(id=self.kwargs['pk'])[0]
         context['groups'] = Team.objects.filter(competition=self.kwargs['pk'], submition__isnull=False)
         context['files'] = []
         for team in context['groups']:
