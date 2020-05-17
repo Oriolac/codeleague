@@ -3,10 +3,7 @@
 {% block title %}{{competition.title}}{% endblock %}
 {% block content %}
 <div class="jumbotron">
-    <div class="container-fluid text-center" vocab="http://schema.org/" typeof="AggregateRating">
-        <a property="itemReviewed">{{competition.title}}</a>
-        <a property="ratingCount" value="{{group}}"></a>
-        <a property="author" value="{{competition.owner.name}}"></a>
+    <div class="container-fluid text-center">
 
         <form method="POST">{% csrf_token%}
 
