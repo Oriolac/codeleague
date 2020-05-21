@@ -19,10 +19,7 @@
                                         <div rel="organizer">
                                             <div typeof="Person">
                                                 <div property="name" value="{{ competition.owner }}"></div>
-                                                <div property="url" value="
-
-
-                                                        {{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}">
+                                                <div property="url" value="{{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}">
                                                 </div>
                                             </div>
                                         </div>
@@ -43,12 +40,13 @@
                                                 <span class="badge badge-warning"
                                                       style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
                                             {% endif %}
-                                            <div rel="location">
+                                            <div rel="location" class="invisible">
                                                 <div typeof="VirtualLocation">
                                                     <a property="url"
-                                                       href="{{ request.get_host }}{% url 'competition:detail' competition.pk %}">Go here!</a>
+                                                       href="{{ request.get_host }}{% url 'competition:detail' competition.pk %}"></a>
                                                 </div>
                                             </div>
+                                            <a href="{% url 'competition:detail' competition.pk %}">Go here!</a>
                                         </div>
                                     </div>
                                 </div>
