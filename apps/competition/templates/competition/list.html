@@ -12,19 +12,20 @@
             <div class="row pb-3">
                 {% for compet in competitions %}
                     <div class="col-6 pb-3 d-flex align-items-stretch" vocab="http://schema.org/" typeof="Hackathon">
-                        <div class="card"  style="width: 36rem;">
-                        <span property="eventAttendanceMode" value="Online"/>
+                        <div class="card" style="width: 36rem;">
+                            <span property="eventAttendanceMode" value="Online"/>
                             <div rel="organizer" class="invisible">
                                 <div typeof="person">
-                                    <a property="url" value="{{ request.get_host }}{% url 'account:user_detail' compet.owner.pk %}"></a>
-                                    <a property="name" value="{{compet.owner}}"></a>
+                                    <a property="url" value="
+                                            {{ request.get_host }}{% url 'account:user_detail' compet.owner.pk %}"></a>
+                                    <a property="name" value="{{ compet.owner }}"></a>
 
                                 </div>
                             </div>
                             <div rel="location" class="invisible">
                                 <div typeof="VirtualLocation">
                                     <a rel="url"
-                                    href="{{ request.get_host }}{% url 'competition:detail' compet.pk %}"></a>
+                                       href="{{ request.get_host }}{% url 'competition:detail' compet.pk %}"></a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -37,7 +38,8 @@
                                 {% endif %}
                                 <div class="row">
                                     <div class="col-12">
-                                        <h4 class="card-title" ><h4 property="name">{{ compet.title }}</h4><h4 property="eventStatus">{% if compet.is_competition_opened %}
+                                        <h4 class="card-title"><h4 property="name">{{ compet.title }}</h4><h4
+                                                property="eventStatus">{% if compet.is_competition_opened %}
                                             <span class="badge badge-success"
                                                   style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
                                         {% elif compet.is_inscription_opened %}
@@ -61,14 +63,16 @@
 
                                 <p class="card-text pt-3" property="description">
                                     {{ compet.description|slice:"0:200" }}...
-
-
                                 </p><br>
+
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="container row">
-                                            <h6>Date: <h6 property="startDate">{{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }}</h6> -
-                                                <h6 property="endDate">{{ compet.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</h6></h6>
+                                            <h6>Date: <h6
+                                                    property="startDate">{{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }}</h6>
+                                                -
+                                                <h6 property="endDate">{{ compet.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</h6>
+                                            </h6>
                                         </div>
                                         <div class="container row">
                                             <h6>Time: {{ compet.data_start_competition|time }}
@@ -85,10 +89,10 @@
                         </div>
                     </div>
                     <!-- Modal competition -->
-            <div class="modal fade pt-5" id="modal{{ compet.id }}" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                    <div class="modal-content">
+                    <div class="modal fade pt-5" id="modal{{ compet.id }}" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
 
                                 <div class="modal-header">
                                     <div class="col-8">
@@ -124,32 +128,38 @@
                                 <div class="modal-body">
                                     <div class="col-12">
                                         <div class="row">
-                                            <h6><p class="font-weight-bold d-inline">Owner:</p> <a href="{% url "account:user_detail" compet.owner.pk %}">{{ compet.owner }}</a></h6>
+                                            <h6><p class="font-weight-bold d-inline">Owner:</p> <a
+                                                    href="{% url "account:user_detail" compet.owner.pk %}">{{ compet.owner }}</a>
+                                            </h6>
                                         </div>
                                         <div class="row">
-                                            <p class="font-weight-bold d-inline">Description: </p> <p class="d-inline"> {{ compet.description|slice:"0:240" }}...</p>
+                                            <p class="font-weight-bold d-inline">Description: </p>
+                                            <p class="d-inline"> {{ compet.description|slice:"0:240" }}...</p>
                                         </div>
                                         <br>
                                     </div>
                                     <div class="container row">
-                                        <h6><p class="font-weight-bold d-inline">Date:</p> {{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }} -
+                                        <h6><p class="font-weight-bold d-inline">
+                                            Date:</p> {{ compet.data_start_competition|date:"SHORT_DATE_FORMAT" }} -
                                             {{ compet.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</h6>
                                     </div>
                                     <div class="container row">
-                                        <h6><p class="font-weight-bold d-inline">Time:</p> {{ compet.data_start_competition|time }}
+                                        <h6><p class="font-weight-bold d-inline">
+                                            Time:</p> {{ compet.data_start_competition|time }}
                                             - {{ compet.data_finish_competition|time }}</h6>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                        <a href='{% url "competition:detail" compet.id %}' type="button"
-                                                    class="btn btn-outline-primary ">Go to competition page</a>
-                                        <div class="float-right">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
+                                    <a href='{% url "competition:detail" compet.id %}' type="button"
+                                       class="btn btn-outline-primary ">Go to competition page</a>
+                                    <div class="float-right">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                </div>
-            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>

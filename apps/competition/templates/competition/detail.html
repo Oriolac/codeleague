@@ -39,6 +39,7 @@
             <div class="container ">
                 <div class="float-right">
                     <div class="row">
+
                         {% if competition.owner != user and competition.is_inscription_opened and haveTeam == False %}
                             <a name="create_team" href='{% url 'competition:create-team' competition.id %}'
                                class="btn btn-primary float-right btn-lg">Create a Group!
@@ -86,7 +87,11 @@
                             {% endif %}
                         </h2>
                         <p property="description">{{ competition.description }}</p>
-
+                        <div class="container">
+                            {% for cat in competition.categories.all %}
+                                <a class="btn btn-outline-success btn-sm" href="{% url 'category:detail' cat.pk %}">{{ cat.name }}</a>
+                            {% endfor %}
+                        </div><br>
                     </div>
                     <div class="col-2">
 
@@ -103,6 +108,7 @@
                     </div>
 
                 </div>
+
                 <div class="row pl-5">
                     <h6 class="d-inline">Date:
                         <div class="d-inline"
@@ -112,14 +118,15 @@
                              property="endDate">{{ competition.data_finish_competition|date:"SHORT_DATE_FORMAT" }}</div>
                     </h6>
                 </div>
-                <div class="row pl-5">
+                <div class="row">
                     <div rel="organizer">
                         <div typeof="Person">
                             <div class="d-inline invisible" property="name">
                                 {{ competition.owner }}
                             </div>
 
-                            <a property="url" class="d-inline invisible" value="{{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}"></a>
+                            <a property="url" class="d-inline invisible"
+                               value="{{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}"></a>
                             Owner: <a
                                 href="{% url 'account:user_detail' competition.owner.pk %}">{{ competition.owner }}
 

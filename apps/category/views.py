@@ -1,9 +1,22 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from apps.league.models import Category, Competition
 
 # Create your views here.
 from django.views import generic
+
+class DetailCategory(LoginRequiredMixin, generic.DetailView):
+    login_url = reverse_lazy('account:login')
+    model = Category
+    template_name = 'detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['competitions'] = {}
+        context['competitions'] = Competition.objects.filter(categories=context['category'])
+        return context
 
 
 class ListCategories(LoginRequiredMixin, generic.ListView):
