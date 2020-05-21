@@ -46,7 +46,7 @@
                                             <div rel="location">
                                                 <div typeof="VirtualLocation">
                                                     <a property="url"
-                                                       href="{% url "competition:detail" competition.pk %}">Go here!</a>
+                                                       href="{{ request.get_host }}{% url 'competition:detail' competition.pk %}">Go here!</a>
                                                 </div>
                                             </div>
                                         </div>
