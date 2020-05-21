@@ -11,10 +11,12 @@ def step_impl(context, team_name, title):
     :type context: behave.runner.Context
     """
     from apps.league.models import Competition, Team
+    from time import sleep
     comp = Competition.objects.get(title=title)
     context.browser.visit(context.get_url('competition:detail', pk=comp.pk))
+    sleep(1)
+    print(context.browser.html)
     context.browser.find_by_name('create_team').first.click()
-    from time import sleep
     sleep(1)
     print(context.browser.url)
     assert context.browser.url == context.get_url('competition:create-team', pk=comp.pk)

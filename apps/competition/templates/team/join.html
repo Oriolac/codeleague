@@ -33,7 +33,7 @@
                                     </form>
                                     {% elif user in group.members.all and competition.is_inscription_opened %}
                                     <form method="POST">{% csrf_token%}
-                                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" name="leave_group"
+                                        <a href="#" class="btn btn-outline-danger float-right" data-toggle="modal" name="leave_group"
                                         data-target="#modal{{ group.id }}">Leave Group</a>
                                     </form>
                                     <!-- Modal competition -->
