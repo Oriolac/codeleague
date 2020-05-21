@@ -119,7 +119,7 @@
                                 <div class="modal-body">
                                     <div class="col-12">
                                         <div class="row">
-                                            <h6><p class="font-weight-bold d-inline">Owner:</p> <a href="{% url "account:user_detail" compet.owner.pk %}">{{ compet.owner }}</a></h6>
+                                            <h6><p class="font-weight-bold d-inline">Owner:</p> <a href="{% url 'account:user_detail' compet.owner.pk %}">{{ compet.owner }}</a></h6>
                                         </div>
                                         <div class="row">
                                             <p class="font-weight-bold d-inline">Description: </p> <p class="d-inline"> {{ compet.description|slice:"0:240" }}...</p>
