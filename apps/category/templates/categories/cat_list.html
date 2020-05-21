@@ -14,6 +14,8 @@
                                aria-controls="collapse{{ category.id }}">
                                 See Competitions</a>
                             <h4 name="cat_name" class="card-title" property="name">{{ category.name }}</h4>
+                            <div class="d-inline invisible" property="url"
+                                 value="{{ request.get_host }}{% url 'category:detail' category.pk %}"></div>
 
                         </div>
                     </div>
@@ -55,6 +57,7 @@
 
 
 
+
                                                                     {{ request.get_host }}{% url 'account:user_detail' k.owner.pk %}">
                                                             </div>
                                                         </div>
@@ -71,6 +74,7 @@
 
 
 
+
                                                                        {{ request.get_host }}{% url 'competition:detail' k.pk %}"></a>
                                                         </div>
                                                     </div>
@@ -82,7 +86,7 @@
 
                                     {% endfor %}
                                 {% endwith %}
-                            <li>...
+                                <li>...
                             </ul>
 
                         </div>

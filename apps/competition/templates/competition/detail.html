@@ -91,9 +91,9 @@
                             {% for category in competition.categories.all %}
                                 <div rel="subjectOf" class="d-inline">
                                     <div typeof="Property" class="d-inline">
-                                        <div property="name" value="{{ category.name }}"></div>
-                                        <div property="description" value="{{ category.description }}"></div>
-                                        <div property="url" value="{{ request.get_host }}{% url 'category:detail' category.pk %}"></div>
+                                        <div class="d-inline" property="name" value="{{ category.name }}"></div>
+                                        <div class="d-inline" property="description" value="{{ category.description }}"></div>
+                                        <div class="d-inline" property="url" value="{{ request.get_host }}{% url 'category:detail' category.pk %}"></div>
                                         <a class="btn btn-outline-success btn-sm"
                                            href="{% url 'category:detail' category.pk %}">{{ category.name }}</a>
                                     </div>

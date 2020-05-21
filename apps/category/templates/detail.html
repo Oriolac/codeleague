@@ -8,7 +8,7 @@
     <div vocab="http://schema.org/" typeof="Property">
         <div class="container">
             <h1 name="cat_name" property="name">{{ category.name }}</h1>
-        <p class="font-italic">Category</p>
+            <p class="font-italic">Category</p>
             <div class="row">
                 <div class="col-10">
                     <p class="text-justify" property="description">{{ category.description }}</p>
@@ -32,6 +32,10 @@
 
                                         <div property="name" value="{{ k.title }}"></div>
                                         <div property="description" value="{{ k.description }}"></div>
+                                        <div class="d-inline invisible" property="url"
+                                             value="
+                                                     {{ request.get_host }}{% url 'category:detail' category.pk %}"></div>
+
                                         <div property="eventStatus" class="d-inline">
                                             {% if k.is_competition_opened %}
                                                 <span class="badge badge-success d-inline"
@@ -55,6 +59,7 @@
 
 
 
+
                                                         {{ request.get_host }}{% url 'account:user_detail' k.owner.pk %}">
                                                 </div>
                                             </div>
@@ -68,6 +73,7 @@
                                             <div typeof="VirtualLocation">
                                                 <a rel="url"
                                                    href="
+
 
 
 
