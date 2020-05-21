@@ -13,14 +13,38 @@
                         Are you sure you want to delete the competition?</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="col-xs-12 float-right">
+                    <div class="col-xs-12 float-right" vocab="http://schema.org/" typeof="DeleteAction">
+                        <span rel="object" class="invisible">
+                            <div typeof="Hackathon">
+                                <span property="eventAttendanceMode" value="Online"/>
+                                <div rel="organizer" class="invisible">
+                                    <div typeof="person">
+                                        <a property="url" href="{{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}">{{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}</a>
+                                        <a property="name" value="{{competition.owner.username}}"></a>
+                                        <a property="email" value="{{competition.owner.email}}"></a>
+                                    </div>
+                                </div>
+                                <div rel="location" class="invisible">
+                                    <div typeof="VirtualLocation">
+                                        <a rel="url" href="{{ request.get_host }}{% url 'competition:detail' competition.pk %}"></a>
+                                    </div>
+                                </div>
+                                <div property="description" value="{{ competition.description|slice:'0:200' }}..."></div>
+                                <div property="name" value="{{ competition.title }}"></div>
+                                <div property="startDate" value="{{ competition.data_start_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                <div property="endDate" value="{{ competition.data_finish_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                <div property="eventStatus" value="Canceled"></div>
+
+                            </div>
+                        </span>
                         <form method="POST">
                             {% csrf_token%}
                             <input type="hidden" name="action" value="delete">
                             <input name="confirm" class="btn btn-warning float-left" type="submit" value="Confirm">
                         </form>
                     </div>
-                    <a name="cancel" href="{% url 'competition:list' %}"  type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                    <a name="cancel" href="{% url 'competition:list' %}" type="button" class="btn btn-secondary"
+                       data-dismiss="modal">Cancel</a>
                 </div>
             </div>
         </div>

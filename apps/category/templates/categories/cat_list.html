@@ -1,35 +1,90 @@
 {% load tag_extras %}
 
 {% for category in categories %}
-    <div class="col-6 pb-3">
-        <div class="card" name="{{ category.name }}">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <a class="btn btn-primary float-right " data-toggle="collapse" name="see_competitions"
-                           href="#collapse{{ category.id }}" role="button" aria-expanded="false"
-                           aria-controls="collapse{{ category.id }}">
-                            See Competitions</a>
-                        <h4 name="cat_name" class="card-title">{{ category.name }}</h4>
 
+    <div class="col-6 pb-3">
+        <div vocab="http://schema.org/" typeof="Property">
+
+            <div class="card" name="{{ category.name }}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <a class="btn btn-primary float-right " data-toggle="collapse" name="see_competitions"
+                               href="#collapse{{ category.id }}" role="button" aria-expanded="false"
+                               aria-controls="collapse{{ category.id }}">
+                                See Competitions</a>
+                            <h4 name="cat_name" class="card-title" property="name">{{ category.name }}</h4>
+
+                        </div>
                     </div>
-                </div>
-                <p name="cat_desc" class="card-text">
-                    {{ category.description|slice:"0:200" }}...
-                </p>
-                <div class="collapse multi-collapse" id="collapse{{ category.id }}">
-                    <div class="card card-body">
-                        <ul>
-                            {% with cid=category.id %}
-                                {% for k in competitions|hash:category.id %}
-                                    <li><a href="{% url 'competition:detail' k.id %}"
-                                           class="text-secondary" name="{{ category.name }}_{{ k.title   }}"> {{ k }}</a></li>
-                                {% endfor %}
-                            {% endwith %}
-                        </ul>
+                    <p name="cat_desc" class="card-text" property="description">
+                        {{ category.description|slice:"0:200" }}...
+                    </p>
+                    <div class="collapse multi-collapse" id="collapse{{ category.id }}">
+                        <div class="card card-body">
+                            <ul>
+                                {% with cid=category.id %}
+                                    {% for k in competitions|hash:category.id %}
+                                        <div rel="subjectOf">
+                                            <div typeof="Hackathon" class="d-inline">
+
+                                                <li><a href="{% url 'competition:detail' k.id %}"
+                                                       class="text-secondary d-inline"
+                                                       name="{{ category.name }}_{{ k.title }}"> {{ k }}</a>
+
+                                                    <div property="name" value="{{ k.title }}"></div>
+                                                    <div property="description" value="{{ k.description }}"></div>
+                                                    <div property="eventStatus" class="d-inline">
+                                                        {% if k.is_competition_opened %}
+                                                            <span class="badge badge-success d-inline"
+                                                                  style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
+                                                        {% elif k.is_inscription_opened %}
+                                                            <span class="badge badge-warning d-inline"
+                                                                  style="background-color: #dacb47; border-color: #dacb47; color: #000">Inscriptions</span>
+                                                        {% else %}
+                                                            <span class="badge badge-warning d-inline"
+                                                                  style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
+
+                                                        {% endif %}
+                                                    </div>
+                                                    <div rel="organizer">
+                                                        <div typeof="Person">
+                                                            <div property="name"
+                                                                 value="{{ k.owner }}"></div>
+                                                            <div property="url" value="
+
+                                                                    {{ request.get_host }}{% url 'account:user_detail' k.owner.pk %}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div property="startDate"
+                                                         value="{{ k.data_start_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                                    <div property="endDate"
+                                                         value="{{ k.data_finish_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                                    <div property="eventAttendanceMode" value="Online"></div>
+                                                    <div rel="location" class="invisible">
+                                                        <div typeof="VirtualLocation">
+                                                            <a rel="url"
+                                                               href="
+
+                                                                       {{ request.get_host }}{% url 'competition:detail' k.pk %}"></a>
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                            </li>
+
+                                        </div>
+
+                                    {% endfor %}
+                                {% endwith %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 {% endfor %}

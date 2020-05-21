@@ -12,12 +12,27 @@
                         {% for competition in competitions %}
                             <div class="col-6">
                                 <div class="card">
-                                    <div class="card-body px-5 py-3">
+                                    <div class="card-body px-5 py-3" vocab="http://schema.org/" typeof="Hackathon">
                                         <div>
-                                            <h4 class="d-inline">{{ competition.title }}</h4>
+                                            <h4 class="d-inline" property="name">{{ competition.title }}</h4>
                                         </div>
-                                        <div class="pl-3">
+                                        <div rel="organizer">
+                                            <div typeof="Person">
+                                                <div property="name" value="{{ competition.owner }}"></div>
+                                                <div property="url" value="
 
+
+                                                        {{ request.get_host }}{% url 'account:user_detail' competition.owner.pk %}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div property="description" value="{{ competition.description }}"></div>
+                                        <div property="eventAttendanceMode" value="Online"></div>
+                                        <div property="startDate"
+                                             value="{{ competition.data_start_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                        <div property="endDate"
+                                             value="{{ competition.data_finish_competition|date:'SHORT_DATE_FORMAT' }}"></div>
+                                        <div class="pl-3" property="eventStatus">
                                             {% if competition.is_competition_opened %}
                                                 <span class="badge badge-success"
                                                       style="background-color: #74DA47; border-color: #74DA47; color: #000">In progress</span>
@@ -28,8 +43,11 @@
                                                 <span class="badge badge-warning"
                                                       style="background-color: #EF3B3B; border-color: #EF3B3B; color: #000">Closed</span>
                                             {% endif %}
-                                            <div>
-                                                <a href="{% url "competition:detail" competition.pk %}">Go here!</a>
+                                            <div rel="location">
+                                                <div typeof="VirtualLocation">
+                                                    <a property="url"
+                                                       href="{% url "competition:detail" competition.pk %}">Go here!</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

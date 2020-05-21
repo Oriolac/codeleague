@@ -4,76 +4,83 @@
 {% block content %}
 <div class="jumbotron">
     <div class="container-fluid text-center">
+
         <form method="POST">{% csrf_token%}
 
             {% for group in groups %}
-                <div class="row pb-3">
-                    <div class="col-3 "></div>
-                    <div class="col-6 ">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="row text-center">
-                                    <div class="col-12 ">                            
-                                        <h4 class="card-title">
+            <div class="row pb-3">
+                <div class="col-3 "></div>
+                <div class="col-6 ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-12 ">
+                                    <h4 class="card-title">
                                         {{ group.name }}</h4>
-                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6 text-left">
-                                        <button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#submit{{group.id}}" aria-expanded="false" aria-controls="collapseExample">
-                                            Check Submition
-                                        </button>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        <label>Team Puntuation</label>
-                                        <input type="number" id="puntuation{{group.id}}" name="puntuation{{group.id}}" size="5" required=True>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <button class="btn btn-primary " type="button" data-toggle="collapse"
+                                            data-target="#submit{{group.id}}" aria-expanded="false"
+                                            aria-controls="collapseExample">
+                                        Check Submition
+                                    </button>
                                 </div>
-                            </div>               
-                        </div>
-                        <div class="collapse" id="submit{{group.id}}">
-                            <div class="card card-body text-left">
-                                <h5> Description</h5>
-                                {{group.submition.description |safe}}
-                                
-                                <h5> Github URL:</h5>
-                                {{  group.submition.githuburl}}
-                                <h5> Submit files:</h5>
-                                {% for file in files %}
-                                    {% if file.0 == group.id %}
-                                        <li class="media">
-                                            <div style="margin:5px" class="container">
-                                                <div class="media-body">
-                                                <a href="{{file.2}}" download="{{file.1}}" class="btn btn-primary btn-sm">
-                                                    <img width="20px" src="{% static 'imgs/icons/document.svg' %}" class="mr-3">{{file.1}}
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
+                                <div class="col-6 text-right">
+                                    <label>Team Puntuation</label>
+                                    <input type="number" id="puntuation{{group.id}}" name="puntuation{{group.id}}"
+                                           size="5" required=True>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 "></div>
+                    <div class="collapse" id="submit{{group.id}}">
+                        <div class="card card-body text-left">
+                            <h5> Description</h5>
+                            {{group.submition.description |safe}}
+
+                            <h5> Github URL:</h5>
+                            {{ group.submition.githuburl}}
+                            <h5> Submit files:</h5>
+                            {% for file in files %}
+                            {% if file.0 == group.id %}
+                            <li class="media">
+                                <div style="margin:5px" class="container">
+                                    <div class="media-body">
+                                        <a href="{{file.2}}" download="{{file.1}}" class="btn btn-primary btn-sm">
+                                            <img width="20px" src="{% static 'imgs/icons/document.svg' %}"
+                                                 class="mr-3">{{file.1}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
+                <div class="col-3 "></div>
+            </div>
             {% endfor %}
             <a href="#" class="btn btn-primary float-right" data-toggle="modal" name="leave_group"
-                           data-target="#confirm">Confirm and close competition</a>
+               data-target="#confirm">Confirm and close competition</a>
 
             <div class="modal fade pt-5" id="confirm" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">
-                                Are you sure you want to establish these scores and end the competition? This action cannot be undone.
+                                Are you sure you want to establish these scores and end the competition? This action
+                                cannot be undone.
                             </h5>
 
                         </div>
                         <div class="modal-body">
                             <div class="col-xs-12 float-right">
-                                <input class="btn btn-warning float-left" type="submit" name="confirm_leave" value="Confirm">
+                                <input class="btn btn-warning float-left" type="submit" name="confirm_leave"
+                                       value="Confirm">
                             </div>
                             <div class="col-xs-12 float-left">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

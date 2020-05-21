@@ -304,23 +304,6 @@ class PublishAnswerCompetition(LoginRequiredMixin, UserPassesTestMixin, generic.
         return reverse_lazy('competition:detail', kwargs={'pk': self.kwargs['pk']})
 
 
-
-class CompetitionFinish(LoginRequiredMixin, UserPassesTestMixin, generic.TemplateView):
-    login_url = reverse_lazy('account:login')
-    template_name = 'team/list.html'
-
-    def test_func(self):
-        competition = Competition.objects.get(pk=self.kwargs['pk'])
-        return competition.owner.pk == self.request.user.pk
-
-    def get_context_data(self, **kwargs):
-        context = {'user': self.request.user}
-        teams = Team.objects.filter(competition=self.kwargs.get('pk'))
-        context['teams'] = teams
-        context.update(kwargs)
-        return super().get_context_data(**context)
-
-
 class RateAnswerCompetition(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     context_object_name = 'competition'
     template_name = 'competition/rate.html'
@@ -333,6 +316,7 @@ class RateAnswerCompetition(LoginRequiredMixin, UserPassesTestMixin, generic.Cre
 
     def get_context_data(self, **kwargs):
         context = {}
+        context['competition'] = Competition.objects.filter(id=self.kwargs['pk'])[0]
         context['groups'] = Team.objects.filter(competition=self.kwargs['pk'], submition__isnull=False)
         context['files'] = []
         for team in context['groups']:
