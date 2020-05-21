@@ -13,10 +13,10 @@ def step_impl(context, title):
     comp = Competition.objects.get(title=title)
     context.browser.visit(context.get_url('competition:detail', pk=comp.pk))
     context.browser.find_by_name(f'delete_competition').first.click()
+    print(context.browser.html)
     assert context.browser.url == context.get_url('competition:delete', pk=comp.pk)
     form = context.browser.find_by_tag('form')
-    if form:
-        context.browser.find_by_name('confirm').first.click()
+    context.browser.find_by_name('confirm').first.click()
 
 
 @then('The list contains {count:n} competition')

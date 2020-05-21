@@ -40,7 +40,7 @@
                         <form method="POST">
                             {% csrf_token%}
                             <input type="hidden" name="action" value="delete">
-                            <input name="confirm" class="btn btn-warning float-left" type="submit" value="Confirm">
+                            <button name="confirm" class="btn btn-warning float-left" type="submit" value="Confirm">Confirm</button>
                         </form>
                     </div>
                     <a name="cancel" href="{% url 'competition:list' %}" type="button" class="btn btn-secondary"

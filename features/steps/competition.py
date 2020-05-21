@@ -27,5 +27,6 @@ def get_competition(row, user=None):
     fc = datetime.datetime.strptime(f'{row["data_finish_competition_0"]} {row["data_finish_competition_1"]}', d_format)
     comp = Competition.objects.create(title=title, description=desc, data_start_inscription=si, owner=user,
                                       data_finish_inscription=fi, data_start_competition=sc, data_finish_competition=fc)
+    comp.save()
 
 

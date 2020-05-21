@@ -9,9 +9,9 @@ Feature: List user participations
     And Exists a user "user2" with password "password"
     And Exists competition registered by "user"
       | title        | description              | data_start_inscription_0 | data_start_inscription_1 | data_finish_inscription_0 | data_finish_inscription_1 | data_start_competition_0 | data_start_competition_1 | data_finish_competition_0 | data_finish_competition_1 |
-      | Competition1 | Competition1 description | 2020-05-09               | 17:00:00                 | 2020-05-20                | 17:00:00                  | 2020-05-21               | 17:00:00                 | 2020-05-22                | 17:00:00                  |
-      | Competition2 | Competition2 description | 2020-05-07               | 17:00:00                 | 2020-05-15                | 17:00:00                  | 2020-05-16               | 17:00:00                 | 2020-06-16                | 18:00:00                  |
-      | Competition3 | Competition3 description | 2020-05-22               | 17:00:00                 | 2020-05-30                | 17:00:00                  | 2020-05-31               | 17:00:00                 | 2020-06-20                | 18:00:00                  |
+      | Competition1 | Competition1 description | 2000-05-09               | 17:00:00                 | 2010-05-20                | 17:00:00                  | 2010-05-21               | 17:00:00                 | 2070-05-22                | 17:00:00                  |
+      | Competition2 | Competition2 description | 2000-05-07               | 17:00:00                 | 2010-05-15                | 17:00:00                  | 2010-05-16               | 17:00:00                 | 2070-06-16                | 18:00:00                  |
+      | Competition3 | Competition3 description | 2000-05-22               | 17:00:00                 | 2010-05-30                | 17:00:00                  | 2010-05-31               | 17:00:00                 | 2070-06-20                | 18:00:00                  |
     And Exists team "team1" at competition "Competition1" by "user1"
     And Exists team "team2" at competition "Competition2" by "user1"
 
