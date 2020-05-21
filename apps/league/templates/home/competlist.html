@@ -11,7 +11,7 @@
                         <span property="eventAttendanceMode" value="Online"/>
                             <div rel="organizer" class="invisible">
                                 <div typeof="person">
-                                    <a property="url" value="{{compet.owner.github_link}}"></a>
+                                    <a property="url" value="{{ request.get_host }}{% url 'account:user_detail' compet.owner.pk %}"></a>
                                     <a property="name" value="{{compet.owner}}"></a>
 
                                 </div>
