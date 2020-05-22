@@ -28,6 +28,15 @@
                                        href="{{ request.get_host }}{% url 'competition:detail' compet.pk %}"></a>
                                 </div>
                             </div>
+                            {% for category in compet.categories.all %}
+                                <div rel="subjectOf" class="d-inline">
+                                    <div typeof="Property" class="d-inline">
+                                        <div class="d-inline" property="name" value="{{ category.name }}"></div>
+                                        <div class="d-inline" property="description" value="{{ category.description }}"></div>
+                                        <div class="d-inline" property="url" value="{{ request.get_host }}{% url 'category:detail' category.pk %}"></div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                             <div class="card-body">
                                 {% if compet.owner == user %}
                                     <a href="{% url 'competition:edit' compet.pk %}"
