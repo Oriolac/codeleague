@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="col-4 ">                            
 
-                                    {% if haveTeam == False and competition.owner != user and competition.is_inscription_opened %}
+                                    {% if haveTeam == False and competition.owner != user and competition.is_inscription_opened and group.members.all|length < 4 %}
                                     <form method="POST">{% csrf_token%}
                                         <input type="hidden" name="action" value="join">
                                         <input type="hidden" id="teamId" value={{group.id}} name="teamId">

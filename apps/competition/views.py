@@ -177,10 +177,10 @@ class CompetitionDetail(LoginRequiredMixin, generic.DetailView, generic.CreateVi
         action = self.request.POST.get('action')
         if competition.is_inscription_opened():
             team = Team.objects.filter(id=self.request.POST.get('teamId'))[0]
-            if action == 'join':
+            if action == 'join' and len(team.members.all()) < 4:
                 team.members.add(self.request.user.pk)
                 team.save()
-            elif action == 'leave':
+            elif action == 'leave' and self.request.user in team.members.all():
                 team.members.remove(self.request.user.pk)
                 team.save()
                 if len(team.members.all()) == 0:
